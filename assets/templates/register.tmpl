@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>用户注册</title>
+</head>
+<body>
+    <input id="name" type="text" placeholder="请输入用户名"><br>
+    <input id="phone" type="number" placeholder="手机号"><br>
+    <input id="password" type="password" placeholder="请输入密码"><br>
+    <button id="submit">提交</button>
+
+    <script src="/static/jquery.js"></script>
+    <script>
+        var host = "/day3"
+        $(function() {
+            $('#submit').click(function() {
+                $.ajax({
+                url: host + '/register',
+                method: 'POST',
+                headers: {
+                    "Content-Type": "application/json;charset=UTF-8"
+                },
+                data: JSON.stringify({
+                    name: $('#name').val(),
+                    phone: $('#phone').val(),
+                    password: $('#password').val(),
+                }),
+                success: function (res) {
+                    console.log(res);
+                }
+            })
+            })
+        })
+    </script>
+</body>
+</html>

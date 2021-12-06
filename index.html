@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="username" type="text" name="username" placeholder="请输入用户名">
+    <input id="password" type="password" name="password" placeholder="请输入密码">
+    <button id="submit">提交</button>
+
+    <br>
+    <br>
+
+    <label for="upload">单文件上传文件</label> <input name="upload" type="file" id="file"><button id="upload">单文件上传</button>
+
+    <br>
+    <br>
+
+    <label for="uploads">多文件上传文件</label> <input name="upload" multiple type="file" id="files"><button id="uploads">多文件上传</button>
+
+    <script src="http://libs.baidu.com/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        var host = "http://localhost:8080/day1";
+        var host2 = "http://localhost:8080/day2";
+        $('#submit').click(function() {
+            $.ajax({
+                // url: host + '/login',
+                url: host2 + '/loginJson',
+                method: 'POST',
+                data: {
+                    username: $('#username').val(),
+                    password: $('#password').val(),
+                },
+                success: function(res) {
+                    console.log(res);
+                }
+            })
+        })
+
+        $('#upload').on('click', function(e) {
+            var formData = new FormData();
+            var files = $('#file').prop('files');
+            console.log(files);
+            formData.append('file', files[0])
+            $.ajax({
+                url: host + '/upload',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    console.log(res);
+                }
+            })
+        })
+
+        $('#uploads').click(function(res) {
+            var formData = new FormData();
+            var files = $('#files').prop('files');
+            if(!files || !files.length) return;
+            for(var i = 0; i < files.length; i++) {
+                formData.append('files[]', files[i])
+            }
+            $.ajax({
+                url: host + '/uploads',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(res) {
+                    console.log(res);
+                }
+            })
+        })
+    </script>
+</body>
+</html>

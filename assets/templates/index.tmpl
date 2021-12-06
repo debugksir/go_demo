@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {{ template "header" }}
+    <h1>{{.title}}</h1>
+    <form action="/day1/login" method="post">
+        <input type="text" name="username" placeholder="请输入用户名">
+        <input type="password" name="password" placeholder="请输入密码">
+        <button type="submit">form标签提交</button>
+    </form>
+    <br><br>
+
+    <input id="username" type="text" name="username" placeholder="请输入用户名">
+    <input id="password" type="password" name="password" placeholder="请输入密码">
+    <button id="submit">form js 提交</button> <button id="submitJson">json提交</button>
+    <br><br>
+
+    <label for="upload">单文件上传文件</label> <input name="upload" type="file" id="file"><button id="upload">单文件上传</button>
+    <br><br>
+
+    <label for="uploads">多文件上传文件</label> <input name="upload" multiple type="file" id="files"><button id="uploads">多文件上传</button>
+
+    <script src="/static/jquery.js"></script>
+    <script src="/static/index.js"></script>
+</body>
+
+</html>

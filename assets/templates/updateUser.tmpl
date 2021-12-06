@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    {{ template "header" }}
+
+    <label for="">用户名：</label><input value={{ .Name }} id="name" type="text" placeholder="请输入用户名"><br>
+    <label for="">手机号：</label><input value={{ .Phone }} id="phone" type="number" placeholder="手机号"><br>
+    <label for="">密码：</label><input value={{ .Password }} id="password" type="password" placeholder="请输入密码"><br>
+    <label for="">头像</label><input value={{ .Avatar }} id="avatar" type="text" placeholder="请输入头像"><br>
+    <label for="">性别</label><input value={{.Gender}} id="gender" type="text" placeholder="请输入性别"><br>
+    <label for="">邮箱</label><input value={{ .Email }} id="email" type="email" placeholder="请输入邮箱"><br>
+    <label for="">生日</label><input value={{ .Birthday }} id="birthday" type="date" placeholder="请输入生日"><br>
+
+    <button id="submit">提交</button>
+    <script src="/static/jquery.js"></script>
+    <script>
+        function getQueryVariable(variable) {
+            var query = window.location.search.substring(1);
+            var vars = query.split("&");
+            for (var i = 0; i < vars.length; i++) {
+                var pair = vars[i].split("=");
+                if (pair[0] == variable) { return pair[1]; }
+            }
+            return (false);
+        }
+        var host = "/day3"
+        $(function () {
+            $('#submit').click(function () {
+                $.ajax({
+                    url: host + '/updateUser',
+                    method: 'POST',
+                    headers: {
+                        "Content-Type": "application/json;charset=UTF-8"
+                    },
+                    data: JSON.stringify({
+                        id: getQueryVariable('id')*1,
+                        name: $('#name').val(),
+                        phone: $('#phone').val(),
+                        password: $('#password').val(),
+                        avatar: $('#avatar').val(),
+                        gender: $('#gender').val() * 1,
+                        email: $('#email').val(),
+                        birthday: new Date($('#birthday').val()).getTime(),
+                    }),
+                    success: function (res) {
+                        console.log(res);
+                    }
+                })
+            })
+        })
+    </script>
+</body>
+
+</html>
