@@ -26,6 +26,12 @@
 - gorm数据库关系建立
 - 对数据库进行增删改查
 
+## day 04
+
+- go内置package
+- go常用内置方法
+- go空安全
+
 ## 备忘
 
 gin 依赖安装： gin get github.com/gin-gonic/gin
