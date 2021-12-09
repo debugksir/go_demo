@@ -32,6 +32,14 @@
 - go常用内置方法
 - go空安全
 
+## day 05
+
+- goLand IDE 破解
+- go viper 实现项目配置
+- go zap 实现日志记录、lumberjack对日志进行分级切片
+- go jwt-go 实现go语言JSON WEB Token 鉴权
+- go air 实现项目热加载
+
 ## 备忘
 
 gin 依赖安装： gin get github.com/gin-gonic/gin
